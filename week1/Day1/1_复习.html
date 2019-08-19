@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /*
+        基本数据类型  string number boolean null undefined
+        引用数据类型  [] {}  Date Math 正则  function...
+        基本数据类型  是存在了栈内存中  操纵的是值
+        引用数据类型  是存在了堆内存中  操纵的是地址
+
+        typeof(只能检测基本类型)  object.prototype.tostring.call()   constructor  instanceof
+
+        var  let  const  function  class  import
+
+        continue  跳出本轮循环
+        break     跳出整个循环
+        
+
+        document.body拿到body   document.documentElement拿到html
+        innerHTML     innerText
+
+    创造div  var oDiv = document.creatElement('div')
+             oDiv.innerHTML = 'hello world';
+             document.body.appendChild(oDiv)
+
+             [] == []  false
+             ![] == []  true
+             空数组转成布尔类型是 true  取反结果是 false   false == []  0 == 0  true
+
+             setTimeout + 递归 就能实现setInterval 
+    */
+
+    var str = '2019-08-19'
+    var ary = str.split('-');
+    var str2 = ary.join('/')
+    console.log(str2)
+</script>
