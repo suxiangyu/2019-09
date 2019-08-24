@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="btnBox">
+        <input type="button" value="button_1" />
+        <input type="button" value="button_2" />
+        <input type="button" value="button_3" />
+        <input type="button" value="button_4" />
+        <input type="button" value="button_5" />
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    var btnBox = document.getElementById('btnBox'),
+        inputs = btnBox.getElementsByTagName('input');  // 上下文 .get...
+    var l = inputs.length;
+    // 事件的循环绑定问题 
+    // 自定义属性的方法：
+    // for (var i = 0; i < l; i++) {
+    //     // 使用自定义属性，思想在于 把 索引 存储到  对应元素的自身上
+    //     inputs[i].myindex = i;   // 给每一项增加一个自定义属性，对应的值 是 当前索引
+    //     inputs[i].onclick = function () {
+    //         alert(this.myindex);
+    //     }
+    // }
+
+    // 闭包的方式：
+    // for (var i = 0; i < l; i++) {
+    //     (function (n) {
+    //         inputs[n].onclick = function () {
+    //             alert(n);
+    //         }
+    //     })(i)
+    // }
+
+    // 闭包方式2
+    // for (var i = 0; i < l; i++) {
+    //     inputs[i].onclick = (function (n) {
+    //         return function () {
+    //             alert(n)
+    //         }
+    //     })(i)
+    // }
+
+
+    // 闭包方式三
+    function fn(n) {
+        return function () {
+            alert(n)
+        }
+    }
+    for (var i = 0; i < l; i++) {
+        inputs[i].onclick = fn(i)
+    }
+</script>

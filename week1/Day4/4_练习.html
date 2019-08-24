@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //6、
+    var a = 10, b = 11, c = 12;
+    function test(a) {
+        a = 1; var b = 2; c = 3;
+        console.log(a,b,c)
+    }
+    test(10);
+    alert(a); alert(b); alert(c); //弹出的三个值分别是多少？
+    //A、1 11 3   B、10 11 12  C、1 2 3   D、10 11 3
+
+    //7、
+    if (!("a" in window)) {
+        var a = 1;
+    }
+    alert(a);
+    //弹出的a的值是？
+    // A、1   B、undefined   C、报错   D、以上答案都不对
+
+    //8、
+    var a = 4;
+    function b(x, y, a) {
+        alert(a);
+        arguments[2] = 10;
+        alert(a);
+    }
+    a = b(1, 2, 3); alert(a); //三次弹出的结果是
+    //A、3  3  4   B、3  10  4   C、3  10  10   D、3  10  undefined
+
+    // 9、
+    var foo = 'hello';
+    (function (foo) {
+        console.log(foo);
+        var foo = foo || 'world';
+        console.log(foo);
+    })(foo);
+    console.log(foo);// 三次分别输出什么？
+    // A、hello hello hello   B、undefined world  hello   C、hello world world   D、以上答案都不正确
+
+    //10、
+    var a = 9;
+    function fn() {
+        a = 0;
+        return function (b) { return b + a++; }
+    }
+    var f = fn()
+    var m = f(5); alert(m);
+    var n = fn()(5); alert(n);
+    var x = f(5); alert(x);
+    alert(a);// 弹出的四次结果？
+    //A、6 6 7 2   B、5 6 7 3   C、5 5 6 3   D、以上答案都不正确 console.log(a);
+    var a=12;
+    function fn(){
+        // var a;
+        console.log(a);
+        var a=13;
+    }
+    fn();
+    console.log(a);
+
+
+
+
+    /*console.log(a);
+     var a=12;
+     function fn(){
+     console.log(a);
+     a=13;
+     }
+     fn();
+     console.log(a);// 
+
+
+   /* console.log(a);
+    a=12;
+    function fn(){
+        console.log(a);
+        a=13;
+    }
+    fn();
+    console.log(a);*/
+
+    /*var foo=1;
+    function bar(){
+        // var foo;
+        if(!foo){
+            var foo=10;
+        }
+        console.log(foo);
+    }
+    bar();*/
+
+    
+    var a=10,b=11,c=12;// 3
+    function test(a){
+        
+        a=1;var b=2;c=3;
+    }
+    test(10);
+    alert(a);
+    alert(b);
+    alert(c);
+
+   
+   /* var a=4;
+    var f = 3;
+    function b(x,y,a) {
+        // x =1 y=2 a=3
+        alert(a);
+       
+        arguments[2]=10;
+        alert(a);
+    }
+    a=b(1,2,f);
+    alert(a)；
+    console.log(f);*/
+
+    /*var ary = [1,2,3,4];
+    function fn(ary) {
+        
+        ary[0]=100;
+        ary=[];
+        ary[0]=1;
+        console.log(ary);
+    }
+    fn(ary)
+    console.log(ary);
+
+    var a=b ={}
+    b=[];
+    console.log(a);*/
+
+
+</script>
