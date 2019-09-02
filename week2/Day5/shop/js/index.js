@@ -20,7 +20,7 @@
         let str = ''; // 用来拼接字符串的
         ary.forEach(item => {
             // item 是数组中的每一项
-            let { img,title, num, price } = item;
+            let { img, title, num, price } = item;
             str += ` <div class="good_box">
         <div class="img_box">
             <img src="${img}">
