@@ -38,7 +38,7 @@
 
     // 使用replace实现身份证识别
     var str = '142625199705214578';
-    var str2 = str.replace(/\d{6}(\d{4})(\d{2})(\{2})\d{2}(\d)(\d|X)/, function (...arg) {
+    var str2 = str.replace(/\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|X)/, function (...arg) {
         console.log(arg);
         return `这个人的性别是${arg[4] % 2 ? '男' : '女'}生日是${arg[1]}年${arg[2]}月${arg[3]}日`
     });
