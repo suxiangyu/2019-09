@@ -27,7 +27,7 @@
     var str = '珠峰2019珠峰2020';
     var reg = /\d+/g;
     console.log(str.match(reg));
-    /*
+
     function getParam(str) {
         var reg = /([^?=&]+)=([^?=&]+)/g;
         var ary = str.match(reg);
@@ -39,7 +39,8 @@
         });
         return obj;
     };
-    */
+
+    /*
     String.prototype.mygetParam = function mygetParam() {
         var reg = /([^?=&]+)=([^?=&]+)/g;
         var ary = this.match(reg);
@@ -50,10 +51,11 @@
         });
         return obj;
     };
-
+*/
     // 思考 把这个方法放置到字符串的原型上
     var str = 'http://baidu.com?a=123&b=345&c=666'
-    var res = str.mygetParam();
+    var res = getParam(str);
+    //var res = str.mygetParam();
     console.log(res);
 
 
