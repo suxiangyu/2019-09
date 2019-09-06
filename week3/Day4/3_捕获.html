@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var reg = /\d+/;
+    var str = '珠峰2019珠峰2020'
+    var res = reg.exec(str); // 返回值是一个数组  第一项是大正则捕获到的内容 第二个开始是小分组捕获到的内容
+    console.log(res);
+
+    // 捕获的贪婪性 一次性会把所有符合正则的内容捕获到  加一个元字符?
+    // 捕获的懒惰性 只捕获一次；                      加一个修饰符g
+
+    var reg = /\d+/g;
+    var str = '珠峰2019珠峰2020'
+    // var res = reg.exec(str);  // lastIndex属性  下一次捕获的起始索引
+
+    // 封装一个 可以一次性捕获所有符合条件的内容  的方法 execAll
+    RegExp.prototype.execAll = function (str) {
+        // 利用 exec 可以一直匹配 直到匹配到 null
+        // this 就是reg;
+        var that = this;
+        if (!that.global) {
+            // 没有全局修饰符 g；
+            that.eval(that.toString() + 'g');//    '/xxx/g'
+        }
+        var res = that.exec(str);
+        var ary = [];
+        while (res) {
+            ary.push(res);
+            res = that.exec(str);
+        }
+        return ary;
+    }
+    var res = reg.execAll(str);
+    console.log(res);
+
+    // 封装一个getCookie的方法  使用execAll  getCookie位于 字符串的原型上
+    String.prototype.getCookie = function (key) {
+        var reg = /([^; =]+)=([^; =]+)/g;
+        var ary = reg.execAll(this);
+        // 把数组ary中的每一项  转成对象的格式
+        var obj = {};
+        ary.forEach(item => {
+            // item 数组中的每一项； 都是一个小数组
+            obj[item[1]] = item[2]
+        });
+        console.log(obj);
+        return key ? obj[key] : obj;
+    }
+    var cookie = "BAIDUID=75472D319472FABA77A3A3B80B7D85AB:FG=1; BIDUPSID=75472D319472FABA77A3A3B80B7";
+    var res1 = cookie.getCookie(); // {}
+    var res2 = cookie.getCookie("BAIDUID") //75472D319472FABA77A3A3B80B7D85AB
+    console.log(res1, res2);
+
+</script>

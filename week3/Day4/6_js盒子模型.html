@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background: #ccc;
+        }
+        main {
+            width: 600px;
+            height: 600px;
+            border: 20px solid skyblue;
+            padding: 10px;
+            position: relative;
+            margin: 50px auto;
+        }
+
+        #box {
+            width: 400px;
+            height: 400px;
+            background: #ccc;
+            padding: 10px;
+            border: 20px dashed slateblue;
+            margin: 30px auto;
+            overflow: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="box">
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+            看看我在看你看看我在看你看看我在看你看看我在看你
+        </div>
+    </main>
+</body>
+
+</html>
+<script>
+    var box = document.getElementById('box');
+    // js 盒子模型;
+    // js 盒子模型的三个系列  client  offset  scroll
+
+    // client  系列 
+    console.log(box.clientWidth);  // width + 左右padding
+    console.log(box.clientHeight);
+    console.log(box.clientLeft);   // 左border
+    console.log(box.clientTop);    // 上border
+
+    // offset  系列
+    console.log(box.offsetWidth);  // clientWidth + 左右border
+    console.log(box.offsetHeight);
+    console.log(box.offsetLeft);   // 当前盒子的外边框的上级参照物的内边框的距离
+    console.log(box.offsetTop);
+    console.log(box.offsetParent); // 上级参照物 （有定位的那个上级元素）
+    // 上级参照物  最多到body  body的上级参照物  是  null；
+
+
+    function offset(ele) {
+        // 获取该元素 到body的上 和 左的距离
+        var temp = ele.offsetParent;
+        var obj = {
+            left: ele.offsetLeft,
+            top: ele.offsetTop
+        }
+        while (temp) {
+            obj.left += temp.offsetLeft + temp.clientLeft;
+            obj.top += temp.offsetTop + temp.clientTop; 4
+            temp = temp.offsetParent;
+        }
+        return obj;
+    };
+
+
+    // scroll  系列  内容不溢出等同于 clientwidth
+    // 内容溢出， 但是没有overfllow属性，盒子的上padding + 内容的高度； （用heigth举例的）
+    // 内容溢出， 但是有overfllow属性， 盒子的上下padding + 内容的高度  （用heigth举例的）
+    console.log('---------------------------------------------------------')
+    console.log(box.scrollWidth);  // 
+    console.log(box.scrollHeight);
+    console.log(box.scrollLeft);   // 卷曲内容的高度
+    console.log(box.scrollTop);    // 卷曲内容的宽度
+
+    // 以上13个属性  只有scrollleft 和 scrolltop 是可以设置的， 其他的都是只读属性
+    //  scrollleft 和 scrolltop  有边界值
+</script>
