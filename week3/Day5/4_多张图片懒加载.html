@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        body {
+            height: 2000px;
+            background: #eee;
+        }
+
+        #box {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            top: 1600px;
+            border: 1px dashed aqua;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="default.gif"
+            realSrc='https://img20.360buyimg.com/mobilecms/s350x350_jfs/t1/16937/34/7246/200156/5c6a13eeE1ea18451/4fffca3afa78b116.png'>
+        <img src="default.gif"
+            realSrc='https://img20.360buyimg.com/mobilecms/s350x350_jfs/t1/16937/34/7246/200156/5c6a13eeE1ea18451/4fffca3afa78b116.png'>
+        <img src="default.gif"
+            realSrc='https://img20.360buyimg.com/mobilecms/s350x350_jfs/t1/16937/34/7246/200156/5c6a13eeE1ea18451/4fffca3afa78b116.png'>
+        <img src="default.gif"
+            realSrc='https://img20.360buyimg.com/mobilecms/s350x350_jfs/t1/16937/34/7246/200156/5c6a13eeE1ea18451/4fffca3afa78b116.png'>
+        <img src="default.gif"
+            realSrc='https://img20.360buyimg.com/mobilecms/s350x350_jfs/t1/16937/34/7246/200156/5c6a13eeE1ea18451/4fffca3afa78b116.png'>
+        <img src="default.gif"
+            realSrc='https://img20.360buyimg.com/mobilecms/s350x350_jfs/t1/16937/34/7246/200156/5c6a13eeE1ea18451/4fffca3afa78b116.png'>
+        <img src="default.gif"
+            realSrc='https://img20.360buyimg.com/mobilecms/s350x350_jfs/t1/16937/34/7246/200156/5c6a13eeE1ea18451/4fffca3afa78b116.png'>
+
+    </div>
+</body>
+
+</html>
+<script src="./utils.js"></script>
+<script>
+    var { offset, winH } = utils;
+    var img = document.getElementById('img');
+    function loadImg(ele) {
+        if (ele.myloaded) return;
+        let scrT = document.documentElement.scrollTop;
+        let winh = utils.winH();
+        let tarT = offset(ele).t;
+        if (scrT + winh > tarT) {
+            let realSrc = ele.getAttribute('realSrc');
+            let temp = new Image();
+            temp.src = realSrc;
+            temp.onload = function () {
+                ele.src = realSrc;
+                temp = null;
+                fadeIn(ele);
+            }
+            ele.myloaded = true; // 自定义一个myloaded属性，用来记录这个元素的加载情况
+        }
+    };
+
+
+    window.onscroll = function () {
+        // loadImg(img);
+        loadAll()
+    }
+    function loadAll() {
+        // 多张图片的懒加载  就是对每一个图片实现下一行 loadImg；
+        var imgs = document.getElementsByTagName('img');
+        for (var i = 0; i < imgs.length; i++) {
+            loadImg(imgs[i])
+        }
+    }
+
+    function fadeIn(ele) {
+        ele.style.opacity = 0;
+        let a = 0;
+        ele.timer = setInterval(() => {
+            a += 0.1;
+            if (a >= 1) {
+                clearInterval(ele.timer);
+                a = 1;
+            }
+            ele.style.opacity = a;
+        }, 20)
+    }
+</script>
