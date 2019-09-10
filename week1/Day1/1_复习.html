@@ -36,7 +36,13 @@
              ![] == []  true
              空数组转成布尔类型是 true  取反结果是 false   false == []  0 == 0  true
 
-             setTimeout + 递归 就能实现setInterval 
+             setTimeout + 递归 就能实现setInterval
+             function f(){
+                 console.log(666);
+                 settimeout(()=>{
+                     f()
+                 },1000)
+             } 
     */
 
     var str = '2019-08-19'
